@@ -1,11 +1,18 @@
 package com.muazwzxv.customer;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Service;
 
-@SpringBootApplication
-public class CustomerService {
-    public static void main(String[] args) {
-        SpringApplication.run(CustomerService.class, args);
+@Service
+public record CustomerService() {
+    public void registerCustomer(CustomerRequest customerRequest) {
+        Customer customer = Customer.builder()
+                .firstName(customerRequest.firstName())
+                .lastName(customerRequest.lastName())
+                .email(customerRequest.email())
+                .build();
+
+        // todo: check if email is valid & taken
+        // todo: store to db
+
     }
 }
