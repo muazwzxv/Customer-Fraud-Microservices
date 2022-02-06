@@ -1,6 +1,6 @@
 package com.muazwzxv.customer;
 
-public record CustomerRequest(
+public record CustomerRequestDto(
         String firstName,
         String lastName,
         String email
