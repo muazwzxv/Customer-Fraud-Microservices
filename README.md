@@ -3,6 +3,8 @@
 
 ***Note that Im following a course on how to create a microservices with Spring, I'm also adding some more service of my own on top of the course***
 
+**Whatever im building is not finalized yet btw**
+
 **The key services im creating is**
 - User Service 
 - Fraud-check service
