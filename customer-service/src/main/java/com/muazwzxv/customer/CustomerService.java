@@ -1,5 +1,7 @@
 package com.muazwzxv.customer;
 
+import com.muazwzxv.clients.fraud.FraudCheckResponseDto;
+import com.muazwzxv.clients.fraud.FraudClient;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
+    private final FraudClient fraudClient;
 
     public void registerCustomer(CustomerRequestDto customerRequest) {
         Customer customer = Customer.builder()
@@ -24,11 +27,8 @@ public class CustomerService {
         customerRepository.saveAndFlush(customer);
 
         // todo: check if fraudster
-        FraudCheckResponseDto response = restTemplate.getForObject(
-                "http://FRAUD/api/v1/fraud-check/{customerId}",
-                FraudCheckResponseDto.class,
-                customer.getId()
-        );
+        FraudCheckResponseDto response = fraudClient.isFraudster(customer.getId());
+
         if (response != null)
             if (response.isFraud()) throw new IllegalStateException("Fraud detected");
 
