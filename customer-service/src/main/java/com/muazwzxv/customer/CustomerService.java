@@ -25,7 +25,7 @@ public class CustomerService {
 
         // todo: check if fraudster
         FraudCheckResponseDto response = restTemplate.getForObject(
-                "http://localhost:8081/api/v1/fraud-check/{customerId}",
+                "http://FRAUD/api/v1/fraud-check/{customerId}",
                 FraudCheckResponseDto.class,
                 customer.getId()
         );
