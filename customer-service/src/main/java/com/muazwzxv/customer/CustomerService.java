@@ -7,7 +7,6 @@ import com.muazwzxv.clients.notifications.NotificationRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 @Service
@@ -15,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final RestTemplate restTemplate;
     private final FraudClient fraudClient;
     private final NotificationClient notificationClient;
 
@@ -37,14 +35,14 @@ public class CustomerService {
 
         log.info(response.toString());
 
-        NotificationRequestDto notificationReq = NotificationRequestDto.builder()
-                .senderId(customer.getId())
-                .receiverId(customer.getId())
-                .content("Customer is not a fraud")
-                .build();
 
-
-        // todo: send notification
-        notificationClient.sendMessage(notificationReq);
+        // todo: Make it async with a queue
+        notificationClient.sendMessage(
+                NotificationRequestDto.builder()
+                        .senderId(customer.getId())
+                        .receiverId(customer.getId())
+                        .content("Customer is not a fraud")
+                        .build()
+        );
     }
 }

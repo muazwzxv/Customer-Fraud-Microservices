@@ -16,6 +16,7 @@ public class NotificationService {
         Notifications notification = Notifications.builder()
                 .senderId(notificationRequest.senderId())
                 .receiverId(notificationRequest.receiverId())
+                .content(notificationRequest.content())
                 .createdAt(LocalDateTime.now())
                 .build();
 
