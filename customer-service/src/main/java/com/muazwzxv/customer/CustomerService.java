@@ -2,6 +2,8 @@ package com.muazwzxv.customer;
 
 import com.muazwzxv.clients.fraud.FraudCheckResponseDto;
 import com.muazwzxv.clients.fraud.FraudClient;
+import com.muazwzxv.clients.notifications.NotificationClient;
+import com.muazwzxv.clients.notifications.NotificationRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
     private final FraudClient fraudClient;
+    private final NotificationClient notificationClient;
 
     public void registerCustomer(CustomerRequestDto customerRequest) {
         Customer customer = Customer.builder()
@@ -34,6 +37,14 @@ public class CustomerService {
 
         log.info(response.toString());
 
+        NotificationRequestDto notificationReq = NotificationRequestDto.builder()
+                .senderId(customer.getId())
+                .receiverId(customer.getId())
+                .content("Customer is not a fraud")
+                .build();
+
+
         // todo: send notification
+        notificationClient.sendMessage(notificationReq);
     }
 }

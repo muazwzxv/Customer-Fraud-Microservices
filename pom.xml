@@ -13,7 +13,7 @@
         <module>customer-service</module>
         <module>fraud-service</module>
         <module>eureka-service</module>
-        <module>client-list</module>
+        <module>client-request-service</module>
         <module>notification-service</module>
     </modules>
 

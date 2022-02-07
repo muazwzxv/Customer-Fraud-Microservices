@@ -19,6 +19,5 @@ public class CustomerController {
     public void register(@RequestBody CustomerRequestDto req) {
         log.info("New Customer Registration {}", req);
         customerService.registerCustomer(req);
-
     }
 }
