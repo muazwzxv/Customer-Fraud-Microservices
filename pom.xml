@@ -14,6 +14,7 @@
         <module>fraud-service</module>
         <module>eureka-service</module>
         <module>client-list</module>
+        <module>notification-service</module>
     </modules>
 
     <name>Fraud-Customer-Microservices</name>
