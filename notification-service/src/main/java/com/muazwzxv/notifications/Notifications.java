@@ -25,6 +25,7 @@ public class Notifications {
     )
     private Integer id;
     private Integer senderId;
+    private Integer receiverId;
     private String content;
     private LocalDateTime createdAt;
 }
