@@ -1,4 +1,4 @@
-package com.muazwzxv.fraud;
+package com.muazwzxv.notifications;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,18 +13,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-public class FraudCheckHistory {
+public class Notifications {
     @Id
     @SequenceGenerator(
-            name = "fraud_id_sequence",
-            sequenceName = "fraud_id_sequence"
+            name = "notification_id_sequence",
+            sequenceName = "notification_id_sequence"
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "fraud_id_sequence"
+            generator = "notification_id_sequence"
     )
     private Integer id;
-    private Integer customerId;
-    private Boolean isFraud;
+    private Integer senderId;
+    private String content;
     private LocalDateTime createdAt;
 }
