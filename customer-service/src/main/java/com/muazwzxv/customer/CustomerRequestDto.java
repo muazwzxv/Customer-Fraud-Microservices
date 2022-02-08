@@ -5,5 +5,4 @@ public record CustomerRequestDto(
         String lastName,
         String email
 ) {
-
 }
