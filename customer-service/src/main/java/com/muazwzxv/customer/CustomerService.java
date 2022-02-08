@@ -30,11 +30,10 @@ public class CustomerService {
         // todo: check if fraudster
         FraudCheckResponseDto response = fraudClient.isFraudster(customer.getId());
 
-        if (response != null)
+        if (response != null) {
             if (response.isFraud()) throw new IllegalStateException("Fraud detected");
-
-        log.info(response.toString());
-
+            log.info(response.toString());
+        }
 
         // todo: Make it async with a queue
         notificationClient.sendMessage(
