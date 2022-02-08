@@ -48,7 +48,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <!--    This section define all the dependencies for the submodule-->
+    <!--    This section defines all the dependencies for the submodule-->
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
