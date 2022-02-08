@@ -15,6 +15,7 @@
         <module>eureka-service</module>
         <module>client-request-service</module>
         <module>notification-service</module>
+        <module>api-gateway</module>
     </modules>
 
     <name>Fraud-Customer-Microservices</name>
