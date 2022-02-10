@@ -21,3 +21,10 @@ my own on top of the course***
 - the fraud service will check whether they are fraudulent
 - There will be Fraud Record service that will store information of individuals who have been deemed fraud
 
+**TODO**
+
+- [ ] Add authentication for users and admin with proper roles
+- [ ] Proper UUID and Internal id for each entity in the database (UUID being public, and ID is internal)
+- [ ] Proper logic for checking fraud
+
+
