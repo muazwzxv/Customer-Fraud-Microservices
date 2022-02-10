@@ -1,5 +1,7 @@
 package com.muazwzxv.customer;
 
+import com.muazwzxv.amqp.RabbitMqConfiguration;
+import com.muazwzxv.amqp.RabbitMqProducer;
 import com.muazwzxv.clients.fraud.FraudCheckResponseDto;
 import com.muazwzxv.clients.fraud.FraudClient;
 import com.muazwzxv.clients.notifications.NotificationClient;
@@ -16,6 +18,8 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final FraudClient fraudClient;
     private final NotificationClient notificationClient;
+    private final RabbitMqProducer rabbitMq;
+    private final RabbitMqConfiguration rabbitMqConfiguration;
 
     public void registerCustomer(CustomerRequestDto customerRequest) {
         Customer customer = Customer.builder()
@@ -35,13 +39,12 @@ public class CustomerService {
             log.info(response.toString());
         }
 
-        // todo: Make it async with a queue
-        notificationClient.sendMessage(
-                NotificationRequestDto.builder()
-                        .senderId(customer.getId())
-                        .receiverId(customer.getId())
-                        .content("Customer is not a fraud")
-                        .build()
-        );
+        NotificationRequestDto requestDto = NotificationRequestDto.builder()
+                .senderId(customer.getId())
+                .receiverId(customer.getId())
+                .content("Customer is not a fraud")
+                .build();
+
+        rabbitMq.publish(requestDto, "internal.exchange", "internal.notification.routing-key");
     }
 }
