@@ -1,7 +1,9 @@
 ## Microservices with Spring boot
 
-***Note that Im following a course on how to create a microservices with Spring, I'm also adding some more service of my
-own on top of the course***
+### This repo focuses more on creating a working microservices with event queues
+
+***Note that I'm following a course on how to create a microservices with Spring, I'm also adding some more service of
+my own on top of the course***
 
 **Whatever im building is not finalized yet btw**
 
@@ -11,6 +13,7 @@ own on top of the course***
 - Fraud-check service
 - Eureka service discovery service
 - Fraud-Record service (Might not need it if we deploy with k8s)
+- Notification service (Sends notification/emails to confirm)
 
 **Processes**
 
