@@ -28,6 +28,8 @@
         <spring.boot.maven.plugin.version>2.6.3</spring.boot.maven.plugin.version>
         <spring.boot.dependencies.version>2.6.3</spring.boot.dependencies.version>
         <spring.cloud-version>2021.0.0</spring.cloud-version>
+        <jib.plugin.version>3.2.0</jib.plugin.version>
+        <image>muazwazir1/${project.artifactId}:${project.version}</image>
     </properties>
 
     <dependencyManagement>
@@ -83,6 +85,27 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>com.google.cloud.tools</groupId>
+                    <artifactId>jib-maven-plugin</artifactId>
+                    <version>${jib.plugin.version}</version>
+                    <configuration>
+                        <from>
+                            <image>
+                                eclipse-temurin:17@sha256:2b47a8ea946ce1e5365a1562414ed576e378b7b670cadff3fb98ebecf2890cdc
+                            </image>
+                            <platforms>
+                                <architecture>amd64</architecture>
+                                <os>linux</os>
+                            </platforms>
+                        </from>
+                        <to>
+                            <tags>
+                                <tag>latest</tag>
+                            </tags>
+                        </to>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

@@ -21,6 +21,7 @@ public class CustomerService {
     private final RabbitMqProducer rabbitMq;
     private final RabbitMqConfiguration rabbitMqConfiguration;
 
+
     public void registerCustomer(CustomerRequestDto customerRequest) {
         Customer customer = Customer.builder()
                 .firstName(customerRequest.firstName())
