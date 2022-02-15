@@ -106,6 +106,15 @@
                             </tags>
                         </to>
                     </configuration>
+                    <!--Make execution configuration available for all sub module-->
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
