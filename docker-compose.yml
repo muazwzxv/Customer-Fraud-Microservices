@@ -69,6 +69,50 @@ services:
       - zipkin
       - eureka-service
 
+  customer-service:
+    image: muazwazir1/customer-service:latest
+    container_name: customer-service
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - application
+    depends_on:
+      - postgres
+      - eureka-service
+      - zipkin
+      - rabbitmq
+
+  fraud-serivce:
+    image: muazwazir1/fraud-service:latest
+    container_name: fraud-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - application
+    depends_on:
+      - postgres
+      - zipkin
+      - eureka-service
+
+  notification-service:
+    image: muazwazir1/notification-service:latest
+    container_name: notification-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - application
+    depends_on:
+      - postgres
+      - zipkin
+      - rabbitmq
+      - eureka-service
+
 networks:
   postgres:
     driver: bridge
