@@ -48,7 +48,9 @@ services:
     image: muazwazir1/eureka-service:latest
     container_name: eureka-service
     ports:
-      - "8671:8761"
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
     networks:
       - application
     depends_on:
@@ -59,6 +61,8 @@ services:
     container_name: api-gateway
     ports:
       - "8083:8083"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
     networks:
       - application
     depends_on:
