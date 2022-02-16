@@ -42,6 +42,22 @@ services:
       - "5672:5672"
       - "15672:15672"
 
+  eureka-service:
+    image: muazwazir1/eureka-service:latest
+    container_name: eureka-service
+    ports:
+      - "8671:8761"
+    depends_on:
+      - zipkin
+
+  api-gateway:
+    image: muazwazir1/api-gateway:latest
+    container_name: api-gateway
+    ports:
+      - "8083:8083"
+    depends_on:
+      - zipkin
+      - eureka-service
 
 networks:
   postgres:
