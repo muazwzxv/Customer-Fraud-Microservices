@@ -86,6 +86,7 @@
                         </execution>
                     </executions>
                 </plugin>
+
                 <plugin>
                     <groupId>com.google.cloud.tools</groupId>
                     <artifactId>jib-maven-plugin</artifactId>
@@ -96,8 +97,14 @@
                                 eclipse-temurin:17@sha256:2b47a8ea946ce1e5365a1562414ed576e378b7b670cadff3fb98ebecf2890cdc
                             </image>
                             <platforms>
-                                <architecture>amd64</architecture>
-                                <os>linux</os>
+                                <platform>
+                                    <architecture>arm64</architecture>
+                                    <os>linux</os>
+                                </platform>
+                                <platform>
+                                    <architecture>amd64</architecture>
+                                    <os>linux</os>
+                                </platform>
                             </platforms>
                         </from>
                         <to>
@@ -106,7 +113,6 @@
                             </tags>
                         </to>
                     </configuration>
-                    <!--Make execution configuration available for all sub module-->
                     <executions>
                         <execution>
                             <phase>package</phase>
@@ -116,6 +122,7 @@
                         </execution>
                     </executions>
                 </plugin>
+
             </plugins>
         </pluginManagement>
         <plugins>
