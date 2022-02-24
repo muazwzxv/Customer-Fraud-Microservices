@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +25,13 @@ public class FraudCheckHistory {
             generator = "fraud_id_sequence"
     )
     private Integer id;
+    private UUID uuid;
     private Integer customerId;
     private Boolean isFraud;
     private LocalDateTime createdAt;
+
+    @PrePersist
+    private void setUUID() {
+        this.uuid = UUID.randomUUID();
+    }
 }

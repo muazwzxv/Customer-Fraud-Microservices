@@ -20,6 +20,7 @@ my own on top of the course***
 - user will want to register themselves to the system
 - the fraud service will check whether they are fraudulent
 - There will be Fraud Record service that will store information of individuals who have been deemed fraud
+- ID will be internal, UUID will be exposed to client (Query happened only with ID)
 
 **TODO**
 
