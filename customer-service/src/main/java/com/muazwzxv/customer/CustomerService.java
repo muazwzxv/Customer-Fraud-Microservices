@@ -28,8 +28,9 @@ public class CustomerService {
     private final ModelMapper mapper;
 
 
-    public void getCustomerById(Long id) {
+    public CustomerDTO getCustomerById(Long id) {
         Customer customer = this.customerRepository.findById(id).orElseThrow(CustomerNotFoundException::new);
+        return this.customerToDTO(customer);
     }
 
     public void getCustomerByUuid(UUID uuid) {

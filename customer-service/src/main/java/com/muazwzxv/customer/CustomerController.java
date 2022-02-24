@@ -1,7 +1,10 @@
 package com.muazwzxv.customer;
 
+import com.muazwzxv.clients.customer.CustomerDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -23,7 +26,8 @@ public class CustomerController {
     }
 
     @GetMapping("{id}")
-    public void getById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<CustomerDTO> getById(@PathVariable(value = "id") Long id) {
+        return new ResponseEntity<CustomerDTO>(this.customerService.getCustomerById(id), HttpStatus.OK);
     }
 
 }
