@@ -6,7 +6,7 @@ import lombok.Data;
 @Builder
 @Data
 public class NotificationRequestDto {
-    Integer senderId;
-    Integer receiverId;
+    Long senderId;
+    Long receiverId;
     String content;
 }

@@ -6,9 +6,13 @@ import com.muazwzxv.clients.fraud.FraudCheckResponseDto;
 import com.muazwzxv.clients.fraud.FraudClient;
 import com.muazwzxv.clients.notifications.NotificationClient;
 import com.muazwzxv.clients.notifications.NotificationRequestDto;
+import com.muazwzxv.customer.exception.CustomerNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -20,7 +24,20 @@ public class CustomerService {
     private final NotificationClient notificationClient;
     private final RabbitMqProducer rabbitMq;
     private final RabbitMqConfiguration rabbitMqConfiguration;
+    private final ModelMapper mapper;
 
+
+    public void getCustomerById(Long id) {
+        Customer customer = this.customerRepository.findById(id).orElseThrow(CustomerNotFoundException::new);
+    }
+
+    public void getCustomerByUuid(UUID uuid) {
+
+    }
+
+    public void getAllCustomer() {
+
+    }
 
     public void registerCustomer(CustomerRequestDto customerRequest) {
         Customer customer = Customer.builder()
