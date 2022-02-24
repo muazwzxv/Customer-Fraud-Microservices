@@ -29,12 +29,17 @@ public class CustomerService {
 
 
     public CustomerDTO getCustomerById(Long id) {
-        Customer customer = this.customerRepository.findById(id).orElseThrow(CustomerNotFoundException::new);
+        Customer customer = this.customerRepository
+                .findById(id)
+                .orElseThrow(CustomerNotFoundException::new);
         return this.customerToDTO(customer);
     }
 
-    public void getCustomerByUuid(UUID uuid) {
-
+    public CustomerDTO getCustomerByUuid(UUID uuid) {
+        Customer customer = this.customerRepository
+                .findByUuid(uuid)
+                .orElseThrow(CustomerNotFoundException::new);
+        return this.customerToDTO(customer);
     }
 
     public void getAllCustomer() {
