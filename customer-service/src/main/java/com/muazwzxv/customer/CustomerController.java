@@ -17,15 +17,15 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @PostMapping
-    public void register(@RequestBody CustomerRequestDto req) {
-        log.info("New Customer Registration {}", req);
-        customerService.registerCustomer(req);
-    }
+//    @PostMapping
+//    public void register(@RequestBody CustomerRequestDto req) {
+//        log.info("New Customer Registration {}", req);
+//        customerService.registerCustomer(req);
+//    }
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<CustomerDTO> postUser(@RequestBody CustomerRequestDto req) {
-        return new ResponseEntity<CustomerDTO>((CustomerDTO) null, HttpStatus.OK);
+        return new ResponseEntity<CustomerDTO>(this.customerService.createCustomer(req), HttpStatus.OK);
     }
 
     @GetMapping

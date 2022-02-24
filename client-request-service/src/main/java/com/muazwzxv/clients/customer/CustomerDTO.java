@@ -1,12 +1,14 @@
 package com.muazwzxv.clients.customer;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CustomerDTO {
     UUID uuid;
     String firstName;

@@ -8,6 +8,7 @@ import com.muazwzxv.clients.fraud.FraudClient;
 import com.muazwzxv.clients.notifications.NotificationClient;
 import com.muazwzxv.clients.notifications.NotificationRequestDto;
 import com.muazwzxv.customer.exception.CustomerNotFoundException;
+import com.muazwzxv.customer.exception.EmailExistException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -53,9 +54,8 @@ public class CustomerService {
 
     public CustomerDTO createCustomer(CustomerRequestDto req) {
 
-        if (this.customerRepository.findByEmail(req.email()).isPresent()) {
-            throw new
-        }
+        if (this.customerRepository.findByEmail(req.email()).isPresent())
+            throw new EmailExistException(req.email());
 
         Customer customer = Customer.builder()
                 .firstName(req.firstName())
