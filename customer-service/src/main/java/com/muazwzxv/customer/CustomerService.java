@@ -13,7 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -42,8 +44,11 @@ public class CustomerService {
         return this.customerToDTO(customer);
     }
 
-    public void getAllCustomer() {
-
+    public List<CustomerDTO> getAllCustomer() {
+        List<Customer> customers = this.customerRepository.getAll();
+        return customers.stream()
+                .map(this::customerToDTO)
+                .collect(Collectors.toList());
     }
 
     public void registerCustomer(CustomerRequestDto customerRequest) {
