@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -23,9 +24,15 @@ public class Notifications {
             strategy = GenerationType.SEQUENCE,
             generator = "notification_id_sequence"
     )
-    private Integer id;
-    private Integer senderId;
-    private Integer receiverId;
+    private Long id;
+    private UUID uuid;
+    private Long senderId;
+    private Long receiverId;
     private String content;
     private LocalDateTime createdAt;
+
+    @PrePersist
+    private void setUUID() {
+        this.uuid = UUID.randomUUID();
+    }
 }

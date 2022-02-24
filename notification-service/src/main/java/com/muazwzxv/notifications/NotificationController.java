@@ -1,11 +1,13 @@
 package com.muazwzxv.notifications;
 
+import com.muazwzxv.clients.notifications.NotificationDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -19,5 +21,10 @@ public class NotificationController {
     public void send(@RequestBody NotificationRequestDto req) {
         log.info("New Notification {}", req);
         notificationService.sendMessage(req);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<NotificationDTO>> getAll() {
+        return new ResponseEntity<>(this.notificationService.getAll(), HttpStatus.OK);
     }
 }

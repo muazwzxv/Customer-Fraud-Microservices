@@ -1,6 +1,7 @@
 package com.muazwzxv.notifications;
 
 import lombok.Data;
+import org.modelmapper.ModelMapper;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -37,5 +38,10 @@ public class NotificationConfiguration {
         return BindingBuilder.bind(this.notificationQueue())
                 .to(this.internalTopicExchange())
                 .with(this.internalNotificationRoutingKey);
+    }
+
+    @Bean
+    public ModelMapper mapper() {
+        return new ModelMapper();
     }
 }

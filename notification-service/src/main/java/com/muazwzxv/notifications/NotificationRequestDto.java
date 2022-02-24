@@ -1,8 +1,8 @@
 package com.muazwzxv.notifications;
 
 public record NotificationRequestDto(
-        Integer senderId,
-        Integer receiverId,
+        Long senderId,
+        Long receiverId,
         String content
 ) {
 }
