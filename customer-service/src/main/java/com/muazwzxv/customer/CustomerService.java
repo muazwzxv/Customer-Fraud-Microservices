@@ -33,22 +33,40 @@ public class CustomerService {
     public CustomerDTO getCustomerById(Long id) {
         Customer customer = this.customerRepository
                 .findById(id)
-                .orElseThrow(CustomerNotFoundException::new);
+                .orElseThrow(() -> new CustomerNotFoundException("id", id));
         return this.customerToDTO(customer);
     }
 
     public CustomerDTO getCustomerByUuid(UUID uuid) {
         Customer customer = this.customerRepository
                 .findByUuid(uuid)
-                .orElseThrow(CustomerNotFoundException::new);
+                .orElseThrow(() -> new CustomerNotFoundException("uuid", uuid));
         return this.customerToDTO(customer);
     }
 
     public List<CustomerDTO> getAllCustomer() {
-        List<Customer> customers = this.customerRepository.getAll();
+        List<Customer> customers = this.customerRepository.findAll();
         return customers.stream()
                 .map(this::customerToDTO)
                 .collect(Collectors.toList());
+    }
+
+    public CustomerDTO createCustomer(CustomerRequestDto req) {
+
+        if (this.customerRepository.findByEmail(req.email()).isPresent()) {
+            throw new
+        }
+
+        Customer customer = Customer.builder()
+                .firstName(req.firstName())
+                .lastName(req.lastName())
+                .email(req.email())
+                .build();
+
+        // todo: check if email is valid & taken
+        customerRepository.saveAndFlush(customer);
+
+        return this.customerToDTO(customer);
     }
 
     public void registerCustomer(CustomerRequestDto customerRequest) {

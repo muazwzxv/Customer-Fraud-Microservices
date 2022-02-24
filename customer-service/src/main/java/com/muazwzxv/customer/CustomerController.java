@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @AllArgsConstructor
 @RestController
@@ -21,8 +23,14 @@ public class CustomerController {
         customerService.registerCustomer(req);
     }
 
+    @PostMapping
+    public ResponseEntity<CustomerDTO> postUser(@RequestBody CustomerRequestDto req) {
+        return new ResponseEntity<CustomerDTO>((CustomerDTO) null, HttpStatus.OK);
+    }
+
     @GetMapping
-    public void getAll() {
+    public ResponseEntity<List<CustomerDTO>> getAll() {
+        return new ResponseEntity<List<CustomerDTO>>(this.customerService.getAllCustomer(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
