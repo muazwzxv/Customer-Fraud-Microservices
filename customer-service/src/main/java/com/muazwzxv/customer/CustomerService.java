@@ -2,6 +2,7 @@ package com.muazwzxv.customer;
 
 import com.muazwzxv.amqp.RabbitMqConfiguration;
 import com.muazwzxv.amqp.RabbitMqProducer;
+import com.muazwzxv.clients.customer.CustomerDTO;
 import com.muazwzxv.clients.fraud.FraudCheckResponseDto;
 import com.muazwzxv.clients.fraud.FraudClient;
 import com.muazwzxv.clients.notifications.NotificationClient;
@@ -64,5 +65,15 @@ public class CustomerService {
                 .build();
 
         rabbitMq.publish(requestDto, "internal.exchange", "internal.notification.routing-key");
+    }
+
+    // Method for modelMapper
+
+    private CustomerDTO customerToDTO(Customer customer) {
+        return mapper.map(customer, CustomerDTO.class);
+    }
+
+    private Customer dtoToCustomer(CustomerDTO dto) {
+        return mapper.map(dto, Customer.class);
     }
 }
