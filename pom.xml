@@ -17,6 +17,7 @@
         <module>notification-service</module>
         <module>api-gateway</module>
         <module>amqp</module>
+        <module>Auth-Service</module>
     </modules>
 
     <name>Fraud-Customer-Microservices</name>
