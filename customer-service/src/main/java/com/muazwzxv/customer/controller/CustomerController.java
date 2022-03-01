@@ -1,6 +1,8 @@
-package com.muazwzxv.customer;
+package com.muazwzxv.customer.controller;
 
 import com.muazwzxv.clients.customer.CustomerDTO;
+import com.muazwzxv.customer.CustomerRequestDto;
+import com.muazwzxv.customer.service.CustomerService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

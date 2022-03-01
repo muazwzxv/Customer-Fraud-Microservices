@@ -1,4 +1,4 @@
-package com.muazwzxv.authService;
+package com.muazwzxv.authService.config;
 
 import com.muazwzxv.apigateway.config.JwtConfig;
 import lombok.RequiredArgsConstructor;

@@ -1,5 +1,6 @@
-package com.muazwzxv.customer;
+package com.muazwzxv.customer.repository;
 
+import com.muazwzxv.customer.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.muazwzxv.customer;
+package com.muazwzxv.customer.service;
 
 import com.muazwzxv.amqp.RabbitMqConfiguration;
 import com.muazwzxv.amqp.RabbitMqProducer;
@@ -7,8 +7,11 @@ import com.muazwzxv.clients.fraud.FraudCheckResponseDto;
 import com.muazwzxv.clients.fraud.FraudClient;
 import com.muazwzxv.clients.notifications.NotificationClient;
 import com.muazwzxv.clients.notifications.NotificationRequestDto;
+import com.muazwzxv.customer.Customer;
+import com.muazwzxv.customer.CustomerRequestDto;
 import com.muazwzxv.customer.exception.CustomerNotFoundException;
 import com.muazwzxv.customer.exception.EmailExistException;
+import com.muazwzxv.customer.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

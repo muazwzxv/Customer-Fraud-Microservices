@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(
         scanBasePackages = {
                 "com.muazwzxv.authService",
-                "com.muazwzxv.apigateway"
+                "com.muazwzxv.apigateway",
+                "com.muazwzxv.customer"
         }
 )
 public class AuthServiceApplication {

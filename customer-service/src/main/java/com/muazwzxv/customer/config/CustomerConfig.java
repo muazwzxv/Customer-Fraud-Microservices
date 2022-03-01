@@ -1,4 +1,4 @@
-package com.muazwzxv.customer;
+package com.muazwzxv.customer.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
