@@ -25,6 +25,7 @@ my own on top of the course***
 **TODO**
 
 - [ ] Add authentication for users and admin with proper roles
+    -  [ ] Add an authentication service
 - [ ] Proper UUID and Internal id for each entity in the database (UUID being public, and ID is internal)
 - [ ] Proper logic for checking fraud
 
