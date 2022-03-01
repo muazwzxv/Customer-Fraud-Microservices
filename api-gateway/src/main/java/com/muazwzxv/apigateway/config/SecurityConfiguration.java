@@ -33,6 +33,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        http.authorizeHttpRequests()
+                .antMatchers(
+                        "/api/login/**",
+                        "api/token/refresh/**"
+                )
+                .permitAll();
     }
 
     @Bean

@@ -7,13 +7,12 @@ my own on top of the course***
 
 **Whatever im building is not finalized yet btw**
 
-**The key services im creating is**
+**List of Service created**
 
 - User Service
 - Fraud-check service
 - Eureka service discovery service
-- Fraud-Record service (Might not need it if we deploy with k8s)
-- Notification service (Sends notification/emails to confirm)
+- Notification service (Sends notification/emails to confirm~~)
 
 **Processes**
 
