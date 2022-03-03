@@ -19,14 +19,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.exceptionHandling().authenticationEntryPoint(((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED)));
-        http.addFilterAfter(new JwtAuthenticationFilter(this.config), UsernamePasswordAuthenticationFilter.class)
-                .authorizeRequests();
-        http.authorizeHttpRequests()
+        http
+                .csrf().disable()
+                // make sure we use stateless session; session won't be used to store user's state.
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                // handle an authorized attempts
+                .exceptionHandling().authenticationEntryPoint((request, response, authenticationException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                .and()
+                // Add a filter to validate the tokens with every request
+                .addFilterAfter(new JwtAuthenticationFilter(this.config), UsernamePasswordAuthenticationFilter.class)
+                // authorization requests config
+                .authorizeRequests()
+                // allow all who are accessing "auth" service
                 .antMatchers(HttpMethod.POST, this.config.getUri()).permitAll()
+                // must be an admin if trying to access admin area (authentication is also required here)
+//                .antMatchers("/gallery" + "/admin/**").hasRole("ADMIN")
+                // Any other request must be authenticated
                 .anyRequest().authenticated();
     }
 }
