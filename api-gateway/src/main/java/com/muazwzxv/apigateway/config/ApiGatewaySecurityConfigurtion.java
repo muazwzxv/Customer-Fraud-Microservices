@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class ApiGatewaySecurityConfigurtion extends WebSecurityConfigurerAdapter {
 
     private final JwtConfig config;
 
