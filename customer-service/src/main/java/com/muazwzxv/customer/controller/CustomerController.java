@@ -41,8 +41,8 @@ public class CustomerController {
         return new ResponseEntity<>(this.customerService.getCustomerById(id), HttpStatus.OK);
     }
 
-    @GetMapping()
-    public ResponseEntity<CustomerDTO> getByEmail(@RequestParam(name = "email") String email) {
+    @GetMapping("/internal/{email}")
+    public ResponseEntity<CustomerDTO> getByEmail(@PathVariable(name = "email") String email) {
         return new ResponseEntity<>(this.customerService.getCustomerByEmail(email), HttpStatus.OK);
     }
 

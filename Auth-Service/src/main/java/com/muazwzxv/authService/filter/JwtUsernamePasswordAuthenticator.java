@@ -55,7 +55,7 @@ public class JwtUsernamePasswordAuthenticator extends UsernamePasswordAuthentica
         try {
             Algorithm algo = Algorithm.HMAC256(config.getSecret());
 
-            CustomerDTO customer = this.customerClient.findByEmail(authResult.getName()).orElseThrow(() -> new CustomerNotFoundException("email", authResult.getName()));
+            CustomerDTO customer = this.customerClient.getByEmail(authResult.getName()).orElseThrow(() -> new CustomerNotFoundException("email", authResult.getName()));
 
             String token = JWT.create()
                     .withClaim("email", customer.getEmail())
