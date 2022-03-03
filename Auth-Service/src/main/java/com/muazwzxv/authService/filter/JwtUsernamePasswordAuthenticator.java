@@ -6,7 +6,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.muazwzxv.apigateway.config.JwtConfig;
 import com.muazwzxv.clients.customer.CustomerClient;
 import com.muazwzxv.clients.customer.CustomerDTO;
-import com.muazwzxv.customer.exception.CustomerNotFoundException;
+import org.springframework.cloud.gateway.support.NotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -55,7 +55,7 @@ public class JwtUsernamePasswordAuthenticator extends UsernamePasswordAuthentica
         try {
             Algorithm algo = Algorithm.HMAC256(config.getSecret());
 
-            CustomerDTO customer = this.customerClient.getByEmail(authResult.getName()).orElseThrow(() -> new CustomerNotFoundException("email", authResult.getName()));
+            CustomerDTO customer = this.customerClient.getByEmail(authResult.getName()).orElseThrow(() -> new NotFoundException("Customer not found"));
 
             String token = JWT.create()
                     .withClaim("email", customer.getEmail())
@@ -64,7 +64,7 @@ public class JwtUsernamePasswordAuthenticator extends UsernamePasswordAuthentica
                     .sign(algo);
 
             response.addHeader(config.getHeader(), config.getPrefix() + token);
-        } catch (CustomerNotFoundException | JWTCreationException e) {
+        } catch (NotFoundException | JWTCreationException e) {
             throw new RuntimeException(e);
         }
     }

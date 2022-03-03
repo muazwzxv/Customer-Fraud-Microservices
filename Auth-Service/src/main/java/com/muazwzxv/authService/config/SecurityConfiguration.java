@@ -3,7 +3,6 @@ package com.muazwzxv.authService.config;
 import com.muazwzxv.apigateway.config.JwtConfig;
 import com.muazwzxv.authService.filter.JwtUsernamePasswordAuthenticator;
 import com.muazwzxv.clients.customer.CustomerClient;
-import com.muazwzxv.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -21,7 +20,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final JwtConfig config;
-    private final CustomerRepository customerRepository;
     private final CustomerClient customerClient;
 
     @Override

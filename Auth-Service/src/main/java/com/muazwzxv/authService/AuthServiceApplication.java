@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
         scanBasePackages = {
                 "com.muazwzxv.authService",
                 "com.muazwzxv.apigateway",
-                "com.muazwzxv.customer"
         }
 )
 @EnableEurekaClient
