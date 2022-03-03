@@ -21,13 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-public class JwUsernamePasswordAuthenticator extends UsernamePasswordAuthenticationFilter {
+public class JwtUsernamePasswordAuthenticator extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager auth;
     private final JwtConfig config;
     private final CustomerRepository customerRepository;
 
-    public JwUsernamePasswordAuthenticator(AuthenticationManager auth, JwtConfig config, CustomerRepository customerRepository) {
+    public JwtUsernamePasswordAuthenticator(AuthenticationManager auth, JwtConfig config, CustomerRepository customerRepository) {
         this.auth = auth;
         this.config = config;
         this.customerRepository = customerRepository;

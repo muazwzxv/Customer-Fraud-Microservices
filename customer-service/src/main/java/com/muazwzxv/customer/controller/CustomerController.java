@@ -39,6 +39,4 @@ public class CustomerController {
     public ResponseEntity<CustomerDTO> getById(@PathVariable(value = "id") Long id) {
         return new ResponseEntity<CustomerDTO>(this.customerService.getCustomerById(id), HttpStatus.OK);
     }
-
-
 }

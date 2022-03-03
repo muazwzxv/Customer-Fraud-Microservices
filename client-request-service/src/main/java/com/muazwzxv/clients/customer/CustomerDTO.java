@@ -15,5 +15,6 @@ public class CustomerDTO {
     UUID uuid;
     String firstName;
     String lastName;
+    String password;
     String email;
 }

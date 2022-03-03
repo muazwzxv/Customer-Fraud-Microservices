@@ -2,6 +2,8 @@ package com.muazwzxv.authService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication(
         scanBasePackages = {
@@ -9,6 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
                 "com.muazwzxv.apigateway",
                 "com.muazwzxv.customer"
         }
+)
+@EnableEurekaClient
+@EnableFeignClients(
+        basePackages = "com.muazwzxv.clients"
 )
 public class AuthServiceApplication {
     public static void main(String[] args) {
