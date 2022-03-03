@@ -1,6 +1,6 @@
 package com.muazwzxv.authService.config;
 
-import com.muazwzxv.apigateway.config.JwtConfig;
+import com.applicationConfiguration.jwt.JwtConfig;
 import com.muazwzxv.authService.filter.JwtUsernamePasswordAuthenticator;
 import com.muazwzxv.clients.customer.CustomerClient;
 import lombok.RequiredArgsConstructor;

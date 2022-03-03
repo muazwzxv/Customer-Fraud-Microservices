@@ -1,15 +1,15 @@
 package com.muazwzxv.apigateway.config;
 
+import com.applicationConfiguration.jwt.JwtConfig;
 import com.muazwzxv.apigateway.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import javax.servlet.http.HttpServletResponse;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -26,7 +26,7 @@ public class ApiGatewaySecurityConfigurtion extends WebSecurityConfigurerAdapter
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 // handle an authorized attempts
-                .exceptionHandling().authenticationEntryPoint((request, response, authenticationException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                .exceptionHandling().authenticationEntryPoint((request, response, authenticationException) -> response.sendError(HttpStatus.UNAUTHORIZED.value()))
                 .and()
                 // Add a filter to validate the tokens with every request
                 .addFilterAfter(new JwtAuthenticationFilter(this.config), UsernamePasswordAuthenticationFilter.class)

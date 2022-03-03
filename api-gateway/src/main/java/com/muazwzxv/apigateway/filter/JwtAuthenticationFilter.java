@@ -1,8 +1,11 @@
 package com.muazwzxv.apigateway.filter;
 
+import com.applicationConfiguration.jwt.JwtConfig;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.muazwzxv.apigateway.config.JwtConfig;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -35,7 +38,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String token = header.replace(config.getPrefix(), "");
 
         try {
-            DecodedJWT decoded = config.verifier().verify(token);
+            DecodedJWT decoded = this.verifier().verify(token);
 
             String username = decoded.getClaim("username").asString();
             if (username != null) {
@@ -54,5 +57,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         chain.doFilter(request, response);
+    }
+
+    public JWTVerifier verifier() {
+        return JWT.require(Algorithm.HMAC256(config.getSecret())).build();
     }
 }

@@ -1,11 +1,7 @@
-package com.muazwzxv.apigateway.config;
+package com.applicationConfiguration.jwt;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 
 @Data
 public class JwtConfig {
@@ -24,10 +20,4 @@ public class JwtConfig {
 
     @Value("${security.jwt.prefix}")
     private String prefix;
-
-    @Bean
-    public JWTVerifier verifier() {
-        return JWT.require(Algorithm.HMAC256(this.getSecret())).build();
-    }
-
 }

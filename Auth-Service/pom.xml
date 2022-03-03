@@ -62,16 +62,16 @@
         </dependency>
 
         <!-- Internal Dependencies-->
-        <!--        <dependency>-->
-        <!--            <groupId>com.muazwzxv</groupId>-->
-        <!--            <artifactId>api-gateway</artifactId>-->
-        <!--            <version>1.0-SNAPSHOT</version>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>com.muazwzxv</groupId>
             <artifactId>client-request</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.muazwzxv</groupId>
+            <artifactId>application-configuration-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

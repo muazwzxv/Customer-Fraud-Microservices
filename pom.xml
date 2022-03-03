@@ -18,6 +18,7 @@
         <module>api-gateway</module>
         <module>amqp</module>
         <module>Auth-Service</module>
+        <module>application-configuration-service</module>
     </modules>
 
     <name>Fraud-Customer-Microservices</name>
