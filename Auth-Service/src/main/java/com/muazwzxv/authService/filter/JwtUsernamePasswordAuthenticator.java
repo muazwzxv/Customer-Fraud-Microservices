@@ -4,9 +4,9 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.muazwzxv.apigateway.config.JwtConfig;
-import com.muazwzxv.customer.Customer;
+import com.muazwzxv.clients.customer.CustomerClient;
+import com.muazwzxv.clients.customer.CustomerDTO;
 import com.muazwzxv.customer.exception.CustomerNotFoundException;
-import com.muazwzxv.customer.repository.CustomerRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,12 +25,12 @@ public class JwtUsernamePasswordAuthenticator extends UsernamePasswordAuthentica
 
     private final AuthenticationManager auth;
     private final JwtConfig config;
-    private final CustomerRepository customerRepository;
+    private final CustomerClient customerClient;
 
-    public JwtUsernamePasswordAuthenticator(AuthenticationManager auth, JwtConfig config, CustomerRepository customerRepository) {
+    public JwtUsernamePasswordAuthenticator(AuthenticationManager auth, JwtConfig config, CustomerClient client) {
         this.auth = auth;
         this.config = config;
-        this.customerRepository = customerRepository;
+        this.customerClient = client;
 
         // by default Spring Security use /login
         // Change to /auth
@@ -55,7 +55,7 @@ public class JwtUsernamePasswordAuthenticator extends UsernamePasswordAuthentica
         try {
             Algorithm algo = Algorithm.HMAC256(config.getSecret());
 
-            Customer customer = this.customerRepository.findByEmail(authResult.getName()).orElseThrow(() -> new CustomerNotFoundException("email", authResult.getName()));
+            CustomerDTO customer = this.customerClient.findByEmail(authResult.getName()).orElseThrow(() -> new CustomerNotFoundException("email", authResult.getName()));
 
             String token = JWT.create()
                     .withClaim("email", customer.getEmail())

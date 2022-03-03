@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @AllArgsConstructor
@@ -27,16 +28,26 @@ public class CustomerController {
 
     @PostMapping()
     public ResponseEntity<CustomerDTO> postUser(@RequestBody CustomerRequestDto req) {
-        return new ResponseEntity<CustomerDTO>(this.customerService.createCustomer(req), HttpStatus.OK);
+        return new ResponseEntity<>(this.customerService.createCustomer(req), HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<List<CustomerDTO>> getAll() {
-        return new ResponseEntity<List<CustomerDTO>>(this.customerService.getAllCustomer(), HttpStatus.OK);
+        return new ResponseEntity<>(this.customerService.getAllCustomer(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<CustomerDTO> getById(@PathVariable(value = "id") Long id) {
-        return new ResponseEntity<CustomerDTO>(this.customerService.getCustomerById(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.customerService.getCustomerById(id), HttpStatus.OK);
+    }
+
+    @GetMapping()
+    public ResponseEntity<CustomerDTO> getByEmail(@RequestParam(name = "email") String email) {
+        return new ResponseEntity<>(this.customerService.getCustomerByEmail(email), HttpStatus.OK);
+    }
+
+    @GetMapping("{uuid}")
+    public ResponseEntity<CustomerDTO> getByUuid(@PathVariable(value = "uuid") UUID uuid) {
+        return new ResponseEntity<>(this.customerService.getCustomerByUuid(uuid), HttpStatus.OK);
     }
 }

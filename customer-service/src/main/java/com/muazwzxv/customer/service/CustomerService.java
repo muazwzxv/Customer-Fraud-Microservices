@@ -48,6 +48,13 @@ public class CustomerService {
         return this.customerToDTO(customer);
     }
 
+    public CustomerDTO getCustomerByEmail(String email) {
+        Customer customer = this.customerRepository
+                .findByEmail(email)
+                .orElseThrow(() -> new CustomerNotFoundException("Email", email));
+        return this.customerToDTO(customer);
+    }
+
     public List<CustomerDTO> getAllCustomer() {
         List<Customer> customers = this.customerRepository.findAll();
         return customers.stream()

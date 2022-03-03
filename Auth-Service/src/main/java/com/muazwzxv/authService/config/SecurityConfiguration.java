@@ -2,6 +2,7 @@ package com.muazwzxv.authService.config;
 
 import com.muazwzxv.apigateway.config.JwtConfig;
 import com.muazwzxv.authService.filter.JwtUsernamePasswordAuthenticator;
+import com.muazwzxv.clients.customer.CustomerClient;
 import com.muazwzxv.customer.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final JwtConfig config;
     private final CustomerRepository customerRepository;
+    private final CustomerClient customerClient;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -37,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // What's the authenticationManager()?
                 // An object provided by WebSecurityConfigurerAdapter, used to authenticate the user passing user's credentials
                 // The filter needs this auth manager to authenticate the user.
-                .addFilter(new JwtUsernamePasswordAuthenticator(authenticationManager(), this.config, this.customerRepository))
+                .addFilter(new JwtUsernamePasswordAuthenticator(authenticationManager(), this.config, this.customerClient))
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, this.config.getUri()).permitAll()
                 .anyRequest().authenticated();
